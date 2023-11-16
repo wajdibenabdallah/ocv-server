@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { UserController } from './user/user.controller';
 import { AdminController } from './admin/admin.controller';
 import { UserService } from './user/user.service';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
