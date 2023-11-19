@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -12,10 +12,13 @@ export class UserController {
 
   @Get('/token')
   async getToken(): Promise<{ token: string }> {
-    // fake timeout to send token : every 10 secondes
-    // should use a kind of socket to communicate between server and front
-    await this.sleep(10);
     const token = await this.userService.getToken();
     return { token };
+  }
+
+  @Post('/login')
+  async login(@Body() { token }: { token: string }): Promise<any> {
+    const auth = await this.userService.login(token);
+    return !!auth;
   }
 }
